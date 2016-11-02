@@ -138,6 +138,9 @@ Plaid._publicRequest = function(options, callback) {
   }
 
   request($requestOptions, function(err, res, $body) {
+    json: options.body,
+    timeout: 120000
+  }, function(err, res, $body) {
     if (err != null) {
       callback(err, null);
     } else if (res.statusCode !== 200) {
@@ -154,6 +157,7 @@ Plaid.Client.prototype._authenticatedRequest = function(options, callback) {
   }
 
   request({
+    timeout: 120000,
     uri: options.uri,
     method: options.method,
     json: R.merge({
@@ -214,6 +218,10 @@ Plaid.Client.prototype.patchInfoUser =
   R.partial(Plaid.Client.prototype._patchUser, ['info']);
 Plaid.Client.prototype.deleteInfoUser =
   R.partial(Plaid.Client.prototype._deleteUser, ['info']);
+
+// Credit
+Plaid.Client.prototype.getCreditUser =
+  R.partial(Plaid.Client.prototype._getUser, ['creditdetails']);
 
 // Risk
 Plaid.Client.prototype.addRiskUser =
@@ -277,6 +285,8 @@ Plaid.Client.prototype.upgradeUser =
     includeMfaResponse: true,
   }, callback);
 };
+
+
 
 // Longtail Institutions
 Plaid.Client.prototype.getLongtailInstitutions = function(options, callback) {
