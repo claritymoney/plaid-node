@@ -127,9 +127,17 @@ Plaid.Client.prototype._deleteUser =
 };
 
 Plaid._publicRequest = function(options, callback) {
-  request({
+  var $requestOptions = {
     uri: options.uri,
     method: options.method,
+    json: true,
+  };
+
+  if (options.body != null) {
+    $requestOptions = R.assoc('body', options.body, $requestOptions);
+  }
+
+  request($requestOptions, function(err, res, $body) {
     json: options.body,
     timeout: 120000
   }, function(err, res, $body) {
@@ -295,7 +303,6 @@ Plaid.getCategory = function(category_id, env, callback) {
   this._publicRequest({
     uri: env + '/categories/' + category_id,
     method: 'GET',
-    body: {},
   }, callback);
 };
 
@@ -303,7 +310,6 @@ Plaid.getCategories = function(env, callback) {
   this._publicRequest({
     uri: env + '/categories',
     method: 'GET',
-    body: {},
   }, callback);
 };
 
@@ -311,7 +317,6 @@ Plaid.getInstitution = function(institution_id, env, callback) {
   this._publicRequest({
     uri: env + '/institutions/' + institution_id,
     method: 'GET',
-    body: {},
   }, callback);
 };
 
@@ -319,7 +324,6 @@ Plaid.getInstitutions = function(env, callback) {
   this._publicRequest({
     uri: env + '/institutions',
     method: 'GET',
-    body: {},
   }, callback);
 };
 
@@ -332,7 +336,6 @@ Plaid.searchInstitutions = function(options, env, callback) {
   this._publicRequest({
     uri: env + '/institutions/search?' + qs,
     method: 'GET',
-    body: {},
   }, callback);
 };
 
