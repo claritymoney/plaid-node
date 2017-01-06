@@ -140,7 +140,7 @@ Plaid._publicRequest = function(options, callback) {
     method: options.method,
     json: options.body,
     timeout: 300000,
-    agent: httpsAgent
+    //agent: httpsAgent
   }, function(err, res, $body) {
     if (err != null) {
       callback(err, null);
@@ -165,7 +165,7 @@ Plaid.Client.prototype._authenticatedRequest = function(options, callback) {
       client_id: this.client_id,
       secret: this.secret,
     }, options.body),
-    'agent': httpsAgent
+    //'agent': httpsAgent
   }, function(err, res, body) {
     handleApiResponse(err, res, body, options.includeMfaResponse, callback);
   });
