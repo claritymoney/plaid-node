@@ -360,8 +360,10 @@ Plaid.searchInstitutions = function(options, env, callback) {
 
 function handleApiResponse(err, res, $body, includeMfaResponse, callback) {
 
-  var requestId = res.headers['x-request-id'];
-  log.info('plaid requestId', requestId);
+  var requestId = res && res.headers ? res.headers['x-request-id'] : null;
+  if (requestId) {
+    log.info('plaid requestId', requestId);
+  }
   if (res != null) {
     $body = R.assoc('statusCode', res.statusCode, $body);
   }
