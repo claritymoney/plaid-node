@@ -158,7 +158,7 @@ Plaid.Client.prototype._authenticatedRequest = function(options, callback) {
   }
 
   request({
-    timeout: 120000,
+    timeout: 300000,
     uri: options.uri,
     method: options.method,
     json: R.merge({
