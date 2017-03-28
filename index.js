@@ -10,7 +10,8 @@ var HttpsAgent = require('agentkeepalive').HttpsAgent;
 var httpsAgent = new HttpsAgent({
   'maxSockets': 200,
   'maxFreeSockets': 200,
-  'keepAliveTimeout': 300000
+  'keepAliveTimeout': 300000,
+  'timeout': 300000
 });
 
 var Plaid = module.exports = {};
