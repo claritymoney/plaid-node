@@ -353,7 +353,7 @@ Plaid.searchInstitutions = function(options, env, callback) {
     q: options.query,
   }));
   this._publicRequest({
-    uri: env + '/institutions/search?' + qs,
+    uri: env + '/institutions/all/search?' + qs,
     method: 'GET',
     body: {},
   }, callback);
