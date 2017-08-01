@@ -20,7 +20,6 @@
     }
   ],
   "dependencies": {
-    "agentkeepalive": "^3.0.0",
     "ramda": "0.19.x",
     "request": "2.67.x"
   },
